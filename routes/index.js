@@ -29,12 +29,11 @@ router.get('/article', function(req, res) {
 router.get('/:id', function(req, res) {
   var db=req.db;
   var collection= db.get('blogcollection');
-  collection.find({_id: collection.ObjectId(req.params.id) }, {},function(e,docs){
-    content = docs;
-  });
-    res.render('article',{
-      article:docs
+  collection.findOne({_id: collection.ObjectId(req.params.id) }, {},function(e,docs){
+    render.res('article',{
+      "article":docs
     });
   });
+});
 
 module.exports = router;
