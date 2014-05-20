@@ -1,0 +1,11 @@
+extends layout
+
+block content
+  h1 GolBit!
+    p Blogs on GolBit
+  ul
+    each article, i in articlelist
+      li
+        a(href="/#{article._id}")=article.title 
+        p Published: #{article.published} 
+        
