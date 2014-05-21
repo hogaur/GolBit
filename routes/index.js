@@ -26,15 +26,17 @@ router.get('/article', function(req, res) {
   });
 });
 
-router.get('/:id', function(req, res) {
+router.get('/article/:id', function(req, res) {
   var db=req.db;
   var collection= db.get('blogcollection');
+  var ObjectID = require('mongodb').ObjectID;
 
-  collection.findOne({_id: db.ObjectId(req.params.id) }, {},function(e,docs){
+  // var id = ObjectID.createFromHexString(req.params.id);
+  collection.findOne({_id: new ObjectID(req.params.id) }, function(e,docs){
     console.log(e);
     console.log(docs);
     
-    render.res('article',{
+    res.render('article',{
       "article":docs
     });
   });

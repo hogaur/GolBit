@@ -6,6 +6,6 @@ block content
   ul
     each article, i in articlelist
       li
-        a(href="/#{article._id}")=article.title 
+        a(href="/article/#{article._id}")=article.title 
         p Published: #{article.published} 
         
