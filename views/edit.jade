@@ -1,0 +1,14 @@
+extends layout
+
+block content
+  h1 GolBit
+  h3 #{title}
+  hr
+  form#formAddPost(name="addpost", method="post", action="/editpost")
+    input#inputSubject(type="text", placeholder="Subject", value="#{blogPost.subject}" name="subject")
+    input#inputContent(type="text", placeholder="Content", value="#{blogPost.body}", name="content")
+    input#inputTags(type="text", placeholder="Your Name- Author's name", value="#{blogPost.author.username}", name="username")
+    input#inputTags(type="text", placeholder="Comma separated valued tags", value="#{blogPost.tags}", name="tags")
+    input#inputTags(type="hidden", value="#{blogPost._id}", name="postid")
+    hr
+    button#btnSubmit(type="submit") Post

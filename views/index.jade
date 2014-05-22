@@ -1,11 +1,17 @@
 extends layout
 
 block content
-  h1= title
-  p Welcome to #{title}  
+  h1 GolBit
+  h3 Welcome to GolBit  
+  h4 #{title}
+  
   ul
-  a(href="/")="Home" 
-  ul  
-  a(href="/about")="About" 
-  ul
-  a(href="/article")="Article"
+    each post, i in postList
+      li
+        a(href="/post/#{post._id}")=post.subject 
+        p by #{post.author.username}
+        p Published on: #{post.created} 
+  hr
+  form#formAddPost(name="addpost", method="get", action="/addpost")
+    button#btnSubmit( type="submit") Add Post
+  

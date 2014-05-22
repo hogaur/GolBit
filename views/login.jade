@@ -1,0 +1,10 @@
+extends layout
+
+block content
+  h1 GolBit
+
+  h7 Login User
+  form#formlogin(name="login", method="post", action="/login")
+    input#inputuserName(type="text", placeholder="username", name="username")
+    input#inputpassword(type="password", placeholder="password", name="password")
+    button#btnSubmit(type="submit") Login

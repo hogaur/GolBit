@@ -1,8 +1,29 @@
 extends layout
 
 block content
-  h1 GolBit!
-  p Blogs on GolBit
-  p article
-  p Title: #{article.title}
-  p Body: #{article.body}
+  h1 GolBit
+  h3 #{article.subject}  
+  p #{article.body}
+  p Tags:
+  ul
+    each tag, i in article.tags
+      li
+        p #{article.tags[i]} 
+  p Posted by: #{article.author.username} on #{article.created} and Last Modified On #{article.modified}
+  h5 User Comments:
+  each comnt, i in article.comments
+    h6 #{comnt.body} 
+    p comment by #{comnt.name} posted on #{comnt.created} 
+  
+  h7 Add Comment
+  form#formAddComment(name="addcomment", method="post", action="/post/comment")
+    input#inputName(type="text", placeholder="username", name="username")
+    input#inputComment(type="text", placeholder="comment", name="comment")
+    input#inputID(type="hidden",name="id",value="#{article._id}")
+    button#btnSubmit(type="submit") Comment
+    hr
+  form#formEditPost(name="editpost", method="get", action="/editpost/#{article._id}")
+    button#btnSubmit( type="submit") Edit Post
+  form#formDeletePost(name="deletepost", method="get", action="/deletepost/#{article._id}")
+    button#btnSubmit( type="submit") Delete Post
+    
